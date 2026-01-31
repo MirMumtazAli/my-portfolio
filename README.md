@@ -63,14 +63,14 @@ Installs a CLI tool used to publish Angular builds to GitHub Pages.
 ## ✅ Step 2: Build Project for Production
 
 ```bash
-ng build --configuration production --base-href "/mirmumtazaliportfolio/"
+ng build --configuration production --base-href "/my-portfolio/"
 ```
 
 ### What this means:
 
 * `ng build` → Builds the Angular project
 * `--configuration production` → Optimized production build
-* `--base-href "/mirmumtazaliportfolio/"` → Tells Angular that the app will be hosted inside a subfolder (GitHub repo name)
+* `--base-href "/my-portfolio/"` → Tells Angular that the app will be hosted inside a subfolder (GitHub repo name)
 
 Build output folder:
 
