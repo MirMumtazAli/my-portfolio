@@ -1,0 +1,88 @@
+<div class="bg-gray-50 text-gray-700 dark:bg-black dark:text-gray-300 font-sans leading-relaxed transition-colors duration-300" [style.background-image]="isDarkMode() ? gradientStyle() : ''">
+  <!-- Header Controls -->
+  <div class="fixed top-0 right-0 p-4 z-50 flex items-center gap-4">
+    <button (click)="toggleTheme()"
+            class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            [attr.aria-label]="isDarkMode() ? 'Activate light mode' : 'Activate dark mode'">
+      @if (isDarkMode()) {
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.061zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM5.106 17.894a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.106 6.106a.75.75 0 011.06 0l1.591 1.59a.75.75 0 01-1.06 1.06L6.106 7.167a.75.75 0 010-1.06z" />
+        </svg>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.69a.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" />
+        </svg>
+      }
+    </button>
+    <button (click)="toggleMobileMenu()" class="lg:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Toggle menu">
+        @if (!isMobileMenuOpen()) {
+            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        } @else {
+            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        }
+    </button>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  @if (isMobileMenuOpen()) {
+    <div class="lg:hidden fixed inset-0 bg-gray-50/95 dark:bg-black/95 backdrop-blur-sm z-40 flex flex-col items-center justify-center text-center">
+        <nav>
+            <ul class="space-y-6">
+                @for(link of navLinks; track link.id) {
+                    <li>
+                        <a (click)="scrollTo($event, link.id)" [href]="'#' + link.id" class="text-2xl font-bold tracking-widest text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                            {{ link.name }}
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+        <a [href]="data().resumeUrl" target="_blank" (click)="closeMobileMenu()" download
+           class="inline-block mt-10 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-300">
+          Download Resume
+        </a>
+    </div>
+  }
+
+  <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-14 md:px-12 md:py-10 lg:px-24 lg:py-0">
+    <div class="lg:flex lg:justify-between lg:gap-16">
+      <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-5/10 lg:flex-col lg:justify-between lg:py-10">
+        <div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
+            {{ data().name }}
+          </h1>
+          <h2 class="mt-1 text-lg font-medium tracking-tight text-gray-500 dark:text-gray-400 sm:text-xl">
+            {{ data().title }}
+          </h2>
+          <app-navigation [navLinks]="navLinks"></app-navigation>
+        </div>
+        <div>
+          <div class="mt-4 flex items-center gap-4">
+            <a [href]="data().contact.github" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Github">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-6 w-6"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
+            </a>
+            <a [href]="data().contact.linkedIn" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.25 6.5 1.75 1.75 0 0 1 6.5 8.25ZM19 19h-3v-4.75c0-1.4-1.2-1.25-1.25-1.25S13.5 13.9 13.5 15v4h-3v-9h3V11s1.38-1.5 3-1.5c2 0 3.5 1.5 3.5 4.5z"></path></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-gray-500">
+            &copy; {{ currentYear }} Mir Mumtaz Ali.
+          </p>
+        </div>
+      </header>
+      <main id="content" class="pt-12 lg:w-7/12 lg:pt-16">
+        <app-about></app-about>
+        <app-education></app-education>
+        <app-skills></app-skills>
+        <app-projects></app-projects>
+        <app-certifications></app-certifications>
+        <app-experience></app-experience>
+        <app-contact></app-contact>
+      </main>
+    </div>
+  </div>
+</div>

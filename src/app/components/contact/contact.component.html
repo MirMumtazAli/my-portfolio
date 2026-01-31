@@ -1,0 +1,23 @@
+<app-section-wrapper title="Get In Touch" sectionId="contact">
+  <div class="text-lg text-gray-600 dark:text-gray-400 max-w-4xl space-y-6">
+    <p>
+      I'm currently seeking new opportunities and would love to connect. You can reach me via email or phone.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-6 text-base">
+      <a href="mailto:{{data().contact.email}}" class="group flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-500 group-hover:text-sky-500 transition-colors">
+          <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+          <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+        </svg>
+        <span class="font-medium text-gray-700 dark:text-gray-300 group-hover:text-sky-500 dark:group-hover:text-white transition-colors">{{data().contact.email}}</span>
+      </a>
+      <div class="group flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-500">
+          <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.279-.087.431l4.108 7.293c.077.152.256.18.431.087l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+        </svg>
+        <span class="font-medium text-gray-700 dark:text-gray-300">{{data().contact.phone}}</span>
+      </div>
+    </div>
+  </div>
+</app-section-wrapper>

@@ -1,0 +1,21 @@
+<nav class="hidden lg:block" aria-label="In-page jump links">
+  <ul class="mt-7 w-max">
+    @for(link of navLinks(); track link.id) {
+      <li>
+        <a class="group flex items-center py-3 cursor-pointer" [href]="'#' + link.id" (click)="scrollTo($event, link.id)">
+          <span class="nav-indicator mr-4 h-px transition-all group-hover:w-16 group-hover:bg-gray-200 dark:group-hover:bg-white"
+            [class]="activeSection() === link.id ? 'w-16 bg-gray-800 dark:bg-white' : 'w-8 bg-gray-400 dark:bg-gray-600'">
+          </span>
+          <span class="nav-text text-xs font-bold uppercase tracking-widest transition-colors group-hover:text-gray-900 dark:group-hover:text-white"
+            [class]="activeSection() === link.id ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'">
+            {{ link.name }}
+          </span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+<a [href]="resumeUrl" target="_blank" download
+  class="inline-block mt-5 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-300">
+  Download Resume
+</a>
