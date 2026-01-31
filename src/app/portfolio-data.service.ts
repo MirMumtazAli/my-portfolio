@@ -75,7 +75,7 @@ export class PortfolioDataService {
       },
     ],
     projects: [
-      {
+      /* {
         title: 'Short Story Sharing Web Portal',
         description: [
           'Developed an Angular application allowing users to submit and read short stories.',
@@ -83,7 +83,7 @@ export class PortfolioDataService {
           'Implemented an admin approval workflow to approve or reject stories.',
           'Enabled secure CRUD operations with Entity Framework Core and SQL Server.',
           'Displayed approved stories publicly on the application.',
-        ],
+        ], */
         technologies: ['Angular', 'ASP.NET Core Web API', 'C#', 'Entity Framework Core', 'Microsoft SQL Server'],
         liveDemoUrl: '#',
         sourceCodeUrl: 'https://github.com/mirmumtazali/Short-Story-Sharing-Web-Portal',
