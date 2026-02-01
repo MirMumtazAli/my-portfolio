@@ -42,11 +42,11 @@ export class AppComponent implements OnInit {
 
   navLinks = [
     { id: 'about', name: 'About' },
-    { id: 'experience', name: 'Experience' },
     { id: 'education', name: 'Education' },
     { id: 'skills', name: 'Skills' },
     { id: 'projects', name: 'Projects' },
     { id: 'certifications', name: 'Certifications' },
+    { id: 'experience', name: 'Experience' },
     { id: 'contact', name: 'Contact' },
   ];
 
